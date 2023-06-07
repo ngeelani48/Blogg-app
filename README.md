@@ -5,7 +5,7 @@
 <div align="center">
   <br/>
 
-  <h3><b>Blog App</b></h3>
+  <h2><b>Blog App</b></h2>
 
 </div>
 
