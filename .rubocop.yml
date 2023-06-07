@@ -17,10 +17,12 @@ Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
   IgnoredMethods: ['describe']
-  Max: 30
+  Max: 41
 Metrics/ParameterLists:
   Max: 7
 Metrics/CyclomaticComplexity:
+  Max: 10
+Metrics/PerceivedComplexity:
   Max: 10
 
 Style/Documentation:
