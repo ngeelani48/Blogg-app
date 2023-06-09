@@ -3,7 +3,10 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :likes
 
-  after_save :update_counter_posts
+  validates :title, presence: true, length: { maximum: 250 }
+  validates :comments_counter, :likes_counter, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  after_commit :update_counter_posts, on: :create
 
   def five_recent_comments
     comments.order(created_at: :desc).limit(5)
@@ -12,6 +15,6 @@ class Post < ApplicationRecord
   private
 
   def update_counter_posts
-    author.update(posts_counter: author.posts.count)
+    User.update_counters(author_id, posts_counter: 1)
   end
 end
