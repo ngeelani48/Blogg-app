@@ -76,6 +76,6 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-# Use for Controller testing 
+# Use for Controller testing
 
 gem 'rails-controller-testing'
