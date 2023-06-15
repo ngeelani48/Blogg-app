@@ -1,1 +1,40 @@
-<h1>Here is the post with ID <%= @post.id %></h1>
+<main id="post-index" class="page">
+  <!-- Home button start -->
+  <div id="user-page">
+    <div class="btn-container">
+      <%= link_to "Home", "../../../" %>
+    </div>
+    <!-- End of Home button -->
+    <div class="single-post-container">
+      <!-- User post start -->
+      <article class="post-article">
+        <div class="info">
+          <div>
+            <h2 class="title"><%= @post.title %></h2>
+            <p class="user-name">by <%= @user.name %></p>
+          </div>
+          <p class="posts-counter">
+            Comment: <%= @post.comments.count %>, Likes: <%= @post.likes.count %>
+          </p>
+        </div>
+        <div class="post-body">
+          <p><%= @post.text %></p>
+        </div>
+      </article>
+      <!-- End of user post -->
+      <!-- Comments container start -->
+      <ul class="comments-container">
+        <% if @comments.any? %>
+          <% @comments.each do |comment| %>
+            <li>
+              <p><%= User.find_by(id: comment.author_id).name %>: <%= comment.text %></p>
+            </li>
+          <% end %>
+        <% else %>
+          <li>No comments added yet...</li>
+        <% end %>
+      </ul>
+      <!-- End of Comments container -->
+    </div>
+  </div>
+</main>
