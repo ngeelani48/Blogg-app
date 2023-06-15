@@ -1,59 +1,68 @@
-require_relative '../rails_helper'
+require 'rails_helper'
 
 RSpec.describe Post, type: :model do
+  let!(:user) { User.create(name: 'Lilly', bio: 'Teacher from Poland.', posts_counter: 0) }
   subject do
-    User.create(name: 'John', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Student')
-    Post.new(title: 'Hello', text: 'This is a post', comments_counter: 0, likes_counter: 0, author_id: User.first.id)
+    described_class.new(title: 'Hello', text: 'This is my first post', author: user, comments_counter: 0,
+                        likes_counter: 0)
   end
 
   before { subject.save }
 
-  context 'Validations' do
-    it 'should be valid with valid attributes' do
+  describe 'on validations' do
+    it 'should valid with valid tiltle' do
       expect(subject).to be_valid
     end
 
-    it 'should not be valid without a title' do
-      subject.title = nil
+    it 'should not valid if :title is blank' do
+      subject.title = ''
       expect(subject).to_not be_valid
     end
 
-    it 'should not be valid if the title exceeds 250 characters' do
-      subject.title = 'a' * 251
+    it 'should not valid if title length is greather than 250 character' do
+      subject.title = 't' * 260
       expect(subject).to_not be_valid
     end
 
-    it 'should have a comments_counter greater than or equal to zero' do
-      expect(subject).to be_valid
+    it 'should not valid if likes_counter is not integer' do
+      subject.likes_counter = 7.23
+      expect(subject).to_not be_valid
+    end
+
+    it 'should not valid if likes_counter is not greather or equal to 0' do
+      subject.likes_counter = -6
+      expect(subject).to_not be_valid
+    end
+
+    it 'should not valid if comments_counter is not integer' do
+      subject.comments_counter = 0.7
+      expect(subject).to_not be_valid
+    end
+
+    it 'should not valid if comments_counter is not greather or equal to 0' do
       subject.comments_counter = -1
-      expect(subject).to_not be_valid
-    end
-
-    it 'should have a likes_counter greater than or equal to zero' do
-      expect(subject).to be_valid
-      subject.likes_counter = -1
       expect(subject).to_not be_valid
     end
   end
 
-  context 'Behavior' do
-    let(:post) { subject }
+  describe 'associations' do
+    it 'should belong to the correct user' do
+      expect(subject.author).to eql user
+    end
 
-    before do
-      5.times do
-        Comment.create!(post:, author_id: User.first.id, text: 'Nice post')
+    it 'should update counter of related user' do
+      expect(subject.author.posts_counter).to eql 1
+    end
+  end
+
+  describe '#recent_comments' do
+    it 'should return the 5 most recent comments' do
+      8.times do |_i|
+        Comment.create(post: subject, author: user, text: 'nice post')
       end
-    end
 
-    it 'should return the five most recent comments' do
-      expect(post.five_recent_comments.count).to eq(5)
-    end
-
-    it 'should update the author\'s posts_counter after saving' do
-      expect(User.first.posts_counter).to eq(1)
-      Post.create!(title: 'New Post', text: 'This is a new post', comments_counter: 0, likes_counter: 0,
-                   author_id: User.first.id)
-      expect(User.first.posts_counter).to eq(2)
+      recent_comments = subject.most_recent_comments
+      expect(recent_comments.length).to eq(5)
     end
   end
 end
