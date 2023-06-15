@@ -123,6 +123,16 @@ article.user-bio {
   margin-bottom: 20px;
 }
 
+.comments-container-index {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border: 1px solid #ccc;
+  margin-top: -15px;
+  padding: 10px;
+  margin-bottom: 25px;
+}
+
 h2.title {
   font-size: 30px;
   color: #333;
