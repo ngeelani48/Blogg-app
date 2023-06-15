@@ -18,7 +18,7 @@
     <%# End of user info %>
     <%# Posts start %>
     <article>
-      <% @posts.each do |post| %>
+      <% @user.three_recent_posts.each do |post| %>
         <%= link_to user_post_path(@user, post) do %>
           <div class="post-container">
             <h3 class="post-title"><%= post.title %></h3>
