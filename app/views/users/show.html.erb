@@ -35,6 +35,11 @@
       <% end %>
     </article>
     <%# End of posts %>
+    <%# Create Post button %>
+    <div class="btn-container create-post">
+      <%= link_to "Create Post", new_user_post_path(@user), class: "btn btn-primary" %>
+    </div>
+    <%# End of Create Post button %>
     <%# See all posts button %>
     <div class="btn-container see-posts">
       <%= link_to "See all posts", user_posts_path(@user) %>

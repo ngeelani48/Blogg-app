@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Create Post</h1>
+
+  <%= form_with(model: @post, url: user_posts_path, local: true, html: { class: 'post-form' }) do |form| %>
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= form.label :text %>
+      <%= form.text_area :text, placeholder: "Enter your post text here" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Create Post" %>
+    </div>
+  <% end %>
+</div>
