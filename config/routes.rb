@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show] do
     resources :posts, only: [:index, :show]
   end
-  # Add more routes as needed
+  root "users#index" # Set the root path to the users index action
 
-  # root "controller#action" - Uncomment and modify this line to define the root path route
+  # Add more routes as needed
 end
