@@ -2,7 +2,7 @@
   <!-- Home button start -->
   <div id="user-page">
     <div class="btn-container">
-      <%= link_to "Home", "../../../" %>
+      <%= link_to "Home", root_path %>
     </div>
     <!-- End of Home button -->
     <div class="single-post-container">
@@ -35,6 +35,20 @@
         <% end %>
       </ul>
       <!-- End of Comments container -->
+      
+      <!-- Add comment form -->
+      <%= form_with(model: [@user, @post, Comment.new], url: user_post_comments_path(@user, @post), method: :post) do |form| %>
+        <div class="form-group">
+          <%= form.text_area :text, class: "form-control", placeholder: "Add a comment..." %>
+        </div>
+        <%= form.submit "Add Comment", class: "btn btn-primary" %>
+      <% end %>
+      
+      <!-- Add like form -->
+      <%= form_with(model: [@user, @post, Like.new], url: user_post_likes_path(@user, @post), method: :post) do |form| %>
+        <%= form.submit "Like", class: "btn btn-primary" %>
+      <% end %>
+      
     </div>
   </div>
 </main>
