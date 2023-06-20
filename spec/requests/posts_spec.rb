@@ -20,7 +20,7 @@ RSpec.describe 'Posts', type: :request do
       user = User.create(name: 'Stella', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Rusia.',
                          posts_counter: 0)
       get user_posts_path(user)
-      expect(response.body).to include("#{user.name}")
+      expect(response.body).to include(user.name.to_s)
     end
   end
 
@@ -49,7 +49,7 @@ RSpec.describe 'Posts', type: :request do
       post = Post.create!(title: 'Test Post', text: 'This is a test post', author: user, comments_counter: 0,
                           likes_counter: 0)
       get user_post_path(user.id, post.id)
-      expect(response.body).to include("#{post.title}")
+      expect(response.body).to include(post.title.to_s)
     end
   end
 end

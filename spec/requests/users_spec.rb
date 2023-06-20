@@ -20,7 +20,7 @@ RSpec.describe UsersController, type: :request do
       user = User.create(name: 'Lyn', photo: 'https://unsplash.com/photos/7fF0iei80AQ', bio: 'Teacher from England.',
                          posts_counter: 0)
       get user_path(user.id)
-      expect(response.body).to include("#{user.name}")
+      expect(response.body).to include(user.name.to_s)
     end
   end
 
