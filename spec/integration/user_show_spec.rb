@@ -8,7 +8,7 @@ RSpec.describe 'User Show Page', type: :feature do
       bio: 'Teacher in school',
       posts_counter: 3
     )
-    
+
     @post1 = @user.posts.create(
       title: 'First Post',
       text: 'This is my first post.',
@@ -66,7 +66,7 @@ RSpec.describe 'User Show Page', type: :feature do
     click_link(@post1.title)
     expect(current_path).to eq(user_post_path(@user, @post1))
   end
-  
+
   it 'redirects to the user posts index page when clicking on "See all posts"' do
     visit user_path(@user)
     click_link('See all posts')

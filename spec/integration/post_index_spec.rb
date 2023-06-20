@@ -3,11 +3,14 @@ require 'rails_helper'
 RSpec.describe 'Post Index Page', type: :feature do
   before do
     @user = User.create(name: 'John', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', posts_counter: 3)
-    
-    @first_post = Post.create(author: @user, title: 'First Post', text: 'This is my first post.', comments_counter: 0, likes_counter: 0)
-    @second_post = Post.create(author: @user, title: 'Second Post', text: 'This is my second post.', comments_counter: 0, likes_counter: 0)
-    @third_post = Post.create(author: @user, title: 'Third Post', text: 'This is my third post.', comments_counter: 0, likes_counter: 0)
-    
+
+    @first_post = Post.create(author: @user, title: 'First Post', text: 'This is my first post.', comments_counter: 0,
+                              likes_counter: 0)
+    @second_post = Post.create(author: @user, title: 'Second Post', text: 'This is my second post.',
+                               comments_counter: 0, likes_counter: 0)
+    @third_post = Post.create(author: @user, title: 'Third Post', text: 'This is my third post.', comments_counter: 0,
+                              likes_counter: 0)
+
     Comment.create(author: @user, post: @first_post, text: 'I like it')
     Comment.create(author: @user, post: @second_post, text: 'Nice post')
     Like.create(author: @user, post: @third_post)
@@ -41,15 +44,12 @@ RSpec.describe 'Post Index Page', type: :feature do
     visit user_posts_path(@user)
     expect(page).to have_selector('.comments-container-index li', text: "#{@user.name}: I like it")
     expect(page).to have_selector('.comments-container-index li', text: "#{@user.name}: Nice post")
-    expect(page).to have_selector('.comments-container-index li', text: "No comments added yet...")
+    expect(page).to have_selector('.comments-container-index li', text: 'No comments added yet...')
   end
-  
 
   it 'redirects to a post show page when clicking on a post' do
     visit user_posts_path(@user)
     click_link('First Post')
     expect(current_path).to eq(user_post_path(@user, @first_post))
   end
-
-  # Add more tests for pagination if applicable
 end
