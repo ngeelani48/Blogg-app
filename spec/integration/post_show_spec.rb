@@ -28,8 +28,7 @@ RSpec.feature 'Post Show Page', type: :feature do
     fill_in 'Add a comment...', with: 'This is a new comment'
     click_button 'Add Comment'
 
-    expect(page).to have_content("#{user.name}: This is a new comment") # Update the expectation to use the user variable
-  end
+    expect(page).to have_content("#{user.name}: This is a new comment") 
 
   scenario 'User can like the post' do
     visit user_post_path(user, post)
