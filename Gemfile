@@ -83,3 +83,5 @@ gem 'rails-controller-testing'
 gem 'launchy'
 
 gem 'will_paginate'
+
+gem 'devise'
