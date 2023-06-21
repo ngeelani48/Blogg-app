@@ -52,4 +52,9 @@ RSpec.describe 'Post Index Page', type: :feature do
     click_link('First Post')
     expect(current_path).to eq(user_post_path(@user, @first_post))
   end
+
+  it 'displays a section for pagination' do
+    visit user_posts_path(@user)
+    expect(page).to have_selector('.pagination')
+  end
 end

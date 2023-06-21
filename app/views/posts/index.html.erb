@@ -44,5 +44,10 @@
         </ul>
       <% end %>
     </article>
+    <%# Pagination section start %>
+    <div class="pagination">
+      <%= will_paginate @posts %>
+    </div>
+    <%# End of Pagination section %>
   </div>
 </main>
