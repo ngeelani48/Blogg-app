@@ -118,6 +118,12 @@ rails server
 - Twitter: [@twitterhandle](https://twitter.com/ngeelani48)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/muhammad-nafees/)
 
+👤 **Koshao Godfrey Kazungu**
+
+- GitHub: [@gKoshao-sys](https://github.com/Koshao-sys/)
+- Twitter: [@KoshaoKG](https://twitter.com/KoshaoKG)
+- LinkedIn: [koshaokazungu](https://www.linkedin.com/in/koshaokazungu/)
+
 ## 🔭 Future Features <a name="future-features"></a>
 
 - **Add some styles of the project**

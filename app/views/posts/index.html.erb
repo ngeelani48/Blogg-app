@@ -12,7 +12,7 @@
       </div>
       <div class="user-info">
         <h3><%= @user.name %></h3>
-        <p class="posts-counter">Number of posts: <%= @user.posts_counter || 0 %></p>
+        <p class="posts-counter">Number of posts: <%= @user.posts.count || 0 %></p>
       </div>
     </div>
     <%# End of user profile %>
@@ -22,7 +22,7 @@
           <div class="post-container">
             <h3 class="post-title"><%= post.title %></h3>
             <div class="post-details">
-              <p class="details"><%= post.text[0..100]... %></p>
+              <p class="details"><%= post.text[0..100] %>&hellip;</p>
             </div>
             <div class="comment-like-container">
               <p class="comment-likes-data">
@@ -44,5 +44,10 @@
         </ul>
       <% end %>
     </article>
+    <%# Pagination section start %>
+    <div class="pagination">
+      <%= will_paginate @posts %>
+    </div>
+    <%# End of Pagination section %>
   </div>
 </main>

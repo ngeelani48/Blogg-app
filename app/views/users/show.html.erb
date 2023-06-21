@@ -12,7 +12,8 @@
       </div>
       <div class="user-info">
         <h3><%= @user.name %></h3>
-        <p class="posts-counter">Number of posts: <%= @user.posts_counter || 0 %></p>
+        <p class="posts-counter">Number of posts: <%= @user.posts.count  || 0 %></p>
+        <p class="user-bio"><%= @user.bio %></p>
       </div>
     </div>
     <%# End of user info %>

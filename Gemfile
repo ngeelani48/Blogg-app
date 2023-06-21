@@ -79,3 +79,7 @@ end
 # Use for Controller testing
 
 gem 'rails-controller-testing'
+
+gem 'launchy'
+
+gem 'will_paginate'

@@ -20,7 +20,7 @@ RSpec.describe UsersController, type: :request do
       user = User.create(name: 'Lyn', photo: 'https://unsplash.com/photos/7fF0iei80AQ', bio: 'Teacher from England.',
                          posts_counter: 0)
       get user_path(user.id)
-      expect(response.body).to include("Here is the user #{user.id}")
+      expect(response.body).to include(user.name.to_s)
     end
   end
 
@@ -40,7 +40,7 @@ RSpec.describe UsersController, type: :request do
                   posts_counter: 0)
       User.create(name: 'John Doe', photo: 'https://unsplash.com/photos/ABC123', bio: 'Lorem ipsum', posts_counter: 0)
       get users_path
-      expect(response.body).to include('Here is the list of Users')
+      expect(response.body).to include('Users')
     end
   end
 end
