@@ -26,13 +26,16 @@
             <div class="post-details">
               <p class="details"><%= post.text.truncate(100) %></p>
             </div>
+            <% end %>
+          <% if can? :delete, post %>
+            <%= button_to 'Delete', user_post_path(current_user, post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+          <% end %>
             <div class="comment-like-container">
               <p class="comment-likes-data">
                 Comment: <%= post.comments_counter || 0 %>, Likes: <%= post.likes_counter || 0 %>
               </p>
             </div>
           </div>
-        <% end %>
       <% end %>
     </article>
     <%# End of posts %>
