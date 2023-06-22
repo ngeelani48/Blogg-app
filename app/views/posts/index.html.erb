@@ -18,19 +18,22 @@
     <%# End of user profile %>
     <article>
       <% @posts.each do |post| %>
-        <%= link_to user_post_path(@user, post) do %>
-          <div class="post-container">
+        <div class="post-container">
+          <%= link_to user_post_path(@user, post) do %>
             <h3 class="post-title"><%= post.title %></h3>
-            <div class="post-details">
-              <p class="details"><%= post.text[0..100] %>&hellip;</p>
-            </div>
-            <div class="comment-like-container">
-              <p class="comment-likes-data">
-                Comment: <%= post.comments.count %>, Likes: <%= post.likes.count %>
-              </p>
-            </div>
+          <div class="post-details">
+            <p class="details"><%= post.text[0..100] %>&hellip;</p>
           </div>
-        <% end %>
+          <% end %>
+          <% if can? :delete, post %>
+            <%= button_to 'Delete', user_post_path(current_user, post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+          <% end %>
+          <div class="comment-like-container">
+            <p class="comment-likes-data">
+              Comment: <%= post.comments.count %>, Likes: <%= post.likes.count %>
+            </p>
+          </div>
+        </div>
         <ul class="comments-container-index">
           <% if post.comments.any? %>
             <% post.most_recent_comments.each do |comment| %>

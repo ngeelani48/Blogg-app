@@ -58,7 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_134849) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.datetime "remember_created_at"
-    t.string "role"
+    t.string "role", default: "", null: false
   end
 
   add_foreign_key "comments", "posts"

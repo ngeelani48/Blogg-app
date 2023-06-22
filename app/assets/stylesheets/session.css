@@ -103,3 +103,8 @@ h2 {
 .common-btn:active {
   background-color: #222;
 }
+
+.delete-button {
+    background-color: red;
+    cursor: pointer;
+}
