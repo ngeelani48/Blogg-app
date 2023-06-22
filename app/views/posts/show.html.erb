@@ -28,6 +28,9 @@
           <% @comments.each do |comment| %>
             <li>
               <p><%= User.find_by(id: comment.author_id).name %>: <%= comment.text %></p>
+              <% if can? :delete, comment %>
+                  <%= button_to 'Delete', user_post_comment_path(@user, @post, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+                <% end %>
             </li>
           <% end %>
         <% else %>

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   def index
     @user = User.includes(post: %i[comments likes]).find(params[:user_id])
     @posts = @user.post.paginate(page: params[:page], per_page: 10)
@@ -12,7 +13,7 @@ class PostsController < ApplicationController
 
   def new
     @user = current_user
-    @post = @user.posts.new
+    @post = @user.post.new
   end
 
   def create
@@ -23,6 +24,17 @@ class PostsController < ApplicationController
       redirect_to user_post_path(current_user, @post), notice: 'Post was successfully created.'
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    authorize! :delete, @post
+
+    if @post.destroy
+      redirect_to user_path(current_user), notice: 'Post was successfully deleted.'
+    else
+      redirect_to user_path(current_user), alert: 'Failed to delete the post.'
     end
   end
 

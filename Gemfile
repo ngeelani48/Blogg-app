@@ -84,4 +84,6 @@ gem 'launchy'
 
 gem 'will_paginate'
 
+gem 'cancancan'
+
 gem 'devise'
