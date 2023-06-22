@@ -1,0 +1,105 @@
+/* Styles for Log in page */
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.login-form {
+  text-align: center;
+  width: 100%;
+}
+
+h2 {
+  margin: 2%;
+  text-align: center;
+}
+
+.form-field {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.remember-me-checkbox {
+  margin-right: 5px;
+}
+
+.remember-me-label {
+  font-size: 14px;
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #337ab7;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background-color: #23527c;
+}
+
+.form-links {
+  text-decoration: underline;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+/* Header section */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #ddd;
+}
+
+.header-btn {
+  display: flex;
+  gap: 10px;
+}
+
+.common-btn {
+  padding: 8px 16px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.common-btn:hover {
+  background-color: #555;
+}
+
+.common-btn:active {
+  background-color: #222;
+}
