@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   def index
     @user = User.includes(post: %i[comments likes]).find(params[:user_id])
     @posts = @user.post.paginate(page: params[:page], per_page: 10)
