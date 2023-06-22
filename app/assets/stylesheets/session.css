@@ -105,6 +105,8 @@ h2 {
 }
 
 .delete-button {
-    background-color: red;
     cursor: pointer;
+}
+.delete-button:hover {
+    background-color: red;
 }
