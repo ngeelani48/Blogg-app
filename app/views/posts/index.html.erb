@@ -21,10 +21,10 @@
         <div class="post-container">
           <%= link_to user_post_path(@user, post) do %>
             <h3 class="post-title"><%= post.title %></h3>
+          <% end %>
           <div class="post-details">
             <p class="details"><%= post.text[0..100] %>&hellip;</p>
           </div>
-          <% end %>
           <% if can? :delete, post %>
             <%= button_to 'Delete', user_post_path(current_user, post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
           <% end %>
@@ -39,6 +39,9 @@
             <% post.most_recent_comments.each do |comment| %>
               <li>
                 <p><%= User.find_by(id: comment.author_id).name %>: <%= comment.text %></p>
+                <% if can? :delete, comment %>
+                  <%= button_to 'Delete', user_post_comment_path(@user, post, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+                <% end %>
               </li>
             <% end %>
           <% else %>
