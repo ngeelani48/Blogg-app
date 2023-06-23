@@ -1,0 +1,73 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/users/{user_id}/posts/{post_id}/comments":
+    get:
+      summary: Retrieve all comments for a post
+      tags:
+      - Comments
+      parameters:
+      - name: user_id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+      - name: post_id
+        in: path
+        description: Post ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create a comment for a post
+      tags:
+      - Comments
+      parameters:
+      - name: user_id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+      - name: post_id
+        in: path
+        description: Post ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Created
+        '422':
+          description: Unprocessable Entity
+  "/api/users/{user_id}/posts":
+    get:
+      summary: Retrieve all posts for a user
+      tags:
+      - Posts
+      parameters:
+      - name: user_id
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '404':
+          description: User not found
+        '422':
+          description: Unprocessable Entity
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
