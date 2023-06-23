@@ -7,6 +7,19 @@ Rails.application.routes.draw do
       resources :likes, only: [:create]
     end
   end
+# API routes
+namespace :api do
+  resources :users, only: [] do
+    resources :posts, only: [:index]
+  end
+end
+
+    resources :users, only: [] do
+      resources :posts, only: [] do
+        resources :comments, only: [:index] # API endpoint to list all comments for a user's post
+        resources :comments, only: [:create] # API endpoint to add a comment to a post
+      end
+    end
 
   root "users#index" # Set the root path to the users index action
 
