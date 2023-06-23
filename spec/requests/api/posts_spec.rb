@@ -7,9 +7,9 @@ RSpec.describe 'Posts API', type: :request do
       parameter name: 'user_id', in: :path, type: :string, description: 'User ID'
 
       response '200', 'OK' do
-        let(:user) { create(:user) }  # Assuming you have a factory for user creation
+        let(:user) { create(:user) } # Assuming you have a factory for user creation
 
-        before { create_list(:post, 5, user: user) }  # Assuming you have a factory for post creation
+        before { create_list(:post, 5, user:) } # Assuming you have a factory for post creation
 
         run_test!
       end

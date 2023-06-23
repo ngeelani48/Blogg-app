@@ -8,10 +8,10 @@ RSpec.describe 'Comments API', type: :request do
       parameter name: 'post_id', in: :path, type: :string, description: 'Post ID'
 
       response '200', 'OK' do
-        let(:user) { create(:user) }  # Assuming you have a factory for user creation
-        let(:post) { create(:post, user: user) }  # Assuming you have a factory for post creation
+        let(:user) { create(:user) } # Assuming you have a factory for user creation
+        let(:post) { create(:post, user:) } # Assuming you have a factory for post creation
 
-        before { create_list(:comment, 5, post: post) }  # Assuming you have a factory for comment creation
+        before { create_list(:comment, 5, post:) } # Assuming you have a factory for comment creation
 
         run_test!
       end
@@ -32,8 +32,8 @@ RSpec.describe 'Comments API', type: :request do
       }
 
       response '201', 'Created' do
-        let(:user) { create(:user) }  # Assuming you have a factory for user creation
-        let(:post) { create(:post, user: user) }  # Assuming you have a factory for post creation
+        let(:user) { create(:user) } # Assuming you have a factory for user creation
+        let(:post) { create(:post, user:) } # Assuming you have a factory for post creation
         let(:comment) { { text: 'This is a comment' } }
 
         run_test!
@@ -42,7 +42,7 @@ RSpec.describe 'Comments API', type: :request do
       response '422', 'Unprocessable Entity' do
         let(:user_id) { 'invalid' }
         let(:post_id) { 'invalid' }
-        let(:comment) { { text: '' } }  # Invalid comment data
+        let(:comment) { { text: '' } } # Invalid comment data
 
         run_test!
       end
