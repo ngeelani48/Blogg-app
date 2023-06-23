@@ -15,8 +15,6 @@ RSpec.describe 'Comments API', type: :request do
 
         run_test!
       end
-
-      # Add error response documentation for 404 and 422 if needed
     end
 
     post 'Create a comment for a post' do
@@ -35,15 +33,12 @@ RSpec.describe 'Comments API', type: :request do
         let(:user) { create(:user) } # Assuming you have a factory for user creation
         let(:post) { create(:post, user:) } # Assuming you have a factory for post creation
         let(:comment) { { text: 'This is a comment' } }
-
         run_test!
       end
-
       response '422', 'Unprocessable Entity' do
         let(:user_id) { 'invalid' }
         let(:post_id) { 'invalid' }
         let(:comment) { { text: '' } } # Invalid comment data
-
         run_test!
       end
     end
